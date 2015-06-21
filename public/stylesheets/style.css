@@ -1,0 +1,248 @@
+@charset "utf-8";
+/* CSS 样式 */
+*{margin:0px;padding:0px;}
+body{background: url("../images/body-bg.jpg") repeat;}
+
+.game-container{width:910px;height:600px;margin:0px auto;position:relative;background-color:#FFF;border-radius:10px;border:5px solid #FFF;}
+
+.audio-player{display:none;}
+#imgLoader{display:none;}
+
+.start-screen{width:910px;height:600px;position:absolute;top:0px;left:0px;background:url(../images/logo.png) no-repeat center;background-size:cover;background-size:500px;text-align:center;}
+.start-screen .start-btn{width:200px;height:66px;left:370px;bottom:50px;position:absolute;cursor:pointer;background:url(../images/startBtn.png) center no-repeat;background-size:200px;}
+.start-screen .start-btn:hover{}
+
+/*用户姓名输入*/
+.input-name{display:none;width:910px;height:600px;position:absolute;top:0px;left:0px;background-color:#FFF;}
+.input-name input[type=text]{width:370px;height:50px;border-radius:10px;outline:none;position:absolute;top:150px;left:280px;line-height:30px;font-size:20px;color:#999;text-align:center;}
+.input-name .confirm-btn{width:200px;height:66px;left:370px;bottom:150px;position:absolute;cursor:pointer;background:url(../images/confirm.png) center no-repeat;background-size:200px;}
+
+.tab-bar{width:910px;height:50px;position:absolute;top:0px;left:0px;z-index:100;}
+.tab-bar .player-control-container{background-color:#FFF;width:40px;height:40px;border-radius:40px;border:2px solid #A9B7B7;position:relative;margin:20px 0px 0px 30px;text-align:center;line-height:40px;}
+.tab-bar .player-control{width:25px;height:25px;cursor:pointer;margin-top:8px;}
+
+.game-layer{display:none;}
+.game-board{width:910px;height:600px;position:absolute;top:0px;left:0px;z-index:10;}
+.game-board .num-1 {width:910px;height:180px;position:absolute;bottom:10px;}
+.game-board .num-1 .ready-btn{width:132px;height:44px;margin:0px auto;cursor:pointer;background:url(../images/readyBtn.png) center no-repeat;background-size:132px;}
+.game-board .num-1 .ready-state{display:none;width:40px;height:47px;left:155px;top:130px;position:absolute;background:url(../images/readyState.png);background-size:40px;background-repeat:no-repeat;}
+.game-board .num-1 .ready-waiting{background:url(../images/readyWating.png) center no-repeat;background-size:132px;}
+.game-board .num-1 .chupai-state{display:none;width:60px;height:70px;position:absolute;background:url(../images/chupailing.png) center no-repeat;background-size:contain;}
+/*其他三位玩家的位置*/
+.game-board .num-2{display:none;width:450px;height:180px;position:absolute;top:100px;left:170px;}
+.game-board .num-2 .ready-state{display:none;width:40px;height:47px;position:absolute;right:75px;top:55px;background:url(../images/readyState.png);background-size:40px;background-repeat:no-repeat;}
+.game-board .num-2 .porkerbg-item-1{display:none;width:60px;height:90px;position:absolute;left:100px;top:0px;background-color:#FFF;border-radius:5px;border:1px solid #eee;}
+.game-board .num-2 .porkerbg-item-2{display:none;width:60px;height:90px;position:absolute;left:120px;top:0px;background-color:#FFF;border-radius:5px;border:1px solid #eee;background-image: url(../images/pocker_bg.png);
+background-size: contain;
+background-repeat: no-repeat;
+background-position: center;}
+.game-board .num-2 .porkerbg-item-2 .left{bottom: 0px;position: absolute;right: 0px;font-size: 13px;font-weight: bold;}
+.game-board .num-2 .chupai-state{display:none;left:200px;top:-50px;width:60px;height:70px;position:absolute;background:url(../images/chupailing.png) center no-repeat;background-size:contain;}
+.game-board .num-3{display:none;width:270px;height:220px;position:absolute;top:200px;right:0px;}
+.game-board .num-3 .ready-state{display:none;width:40px;height:47px;position:absolute;right:20px;bottom:10px;background:url(../images/readyState.png) center no-repeat;background-size:40px;background-repeat:no-repeat;}
+.game-board .num-3 .porkerbg-item-1{display:none;width:60px;height:90px;position:absolute;left:95px;top:0px;background-color:#FFF;border-radius:5px;border:1px solid #eee;}
+.game-board .num-3 .porkerbg-item-2{display:none;width:60px;height:90px;position:absolute;left:80px;top:0px;background-color:#FFF;border-radius:5px;border:1px solid #eee;background-image: url(../images/pocker_bg.png);
+background-size: contain;
+background-repeat: no-repeat;
+background-position: center;}
+.game-board .num-3 .porkerbg-item-2 .left{bottom: 0px;position: absolute;right: 0px;font-size: 13px;font-weight: bold;}
+.game-board .num-3 .chupai-state{display:none;right:70px;top:-30px;width:60px;height:70px;position:absolute;background:url(../images/chupailing.png) center no-repeat;background-size:contain;}
+.game-board .num-4{display:none;width:270px;height:220px;position:absolute;top:200px;left:0px;}
+.game-board .num-4 .ready-state{display:none;width:40px;height:47px;position:absolute;left:25px;bottom:15px;background:url(../images/readyState.png) center no-repeat;background-size:40px;background-repeat:no-repeat;}
+.game-board .num-4 .porkerbg-item-1{display:none;width:60px;height:90px;position:absolute;left:100px;top:0px;background-color:#FFF;border-radius:5px;border:1px solid #eee;}
+.game-board .num-4 .porkerbg-item-2{display:none;width:60px;height:90px;position:absolute;left:120px;top:0px;background-color:#FFF;border-radius:5px;border:1px solid #eee;background-image: url(../images/pocker_bg.png);
+background-size: contain;
+background-repeat: no-repeat;
+background-position: center;}
+.game-board .num-4 .porkerbg-item-2 .left{bottom: 0px;position: absolute;right: 0px;font-size: 13px;font-weight: bold;}
+.game-board .num-4 .chupai-state{display:none;top: -30px;left: 50px;width:60px;height:70px;position:absolute;background:url(../images/chupailing.png) center no-repeat;background-size:contain;}
+
+
+.porker-board{width:530px;height:150px;top:30px;left:200px;position:absolute;text-align:center;}
+.porker-item{width:100px;height:150px;position:relative;display: inline-block;margin-left: -70px;background-color:#FFF;border-radius:5px;border:1px solid #999;}
+.porker-item:hover{background-color:#eee;}
+.porker-board .porker-item:first-child{margin-left:0px;}
+.porker-item .porker-top{width:100px;height:50px;position:relative;}
+.porker-item .porker-top .point{width:20px;height:20px;background-color:#F00;top:10px;left:3px;position:absolute;}
+.porker-item .porker-top .color-heitao{width:15px;height:15px;background-color:#F00;top:33px;left:5px;position:absolute;background:url(../images/pocker.png) center;background-position:-667px -777px;}
+.porker-item .porker-top .color-hongtao{width:15px;height:15px;background-color:#F00;top:33px;left:5px;position:absolute;background:url(../images/pocker.png) center;background-position:-645px -777px;}
+.porker-item .porker-top .color-fangkuai{width:15px;height:15px;background-color:#F00;top:33px;left:5px;position:absolute;background:url(../images/pocker.png) center;background-position:-602px -777px;}
+.porker-item .porker-top .color-caohua{width:15px;height:15px;background-color:#F00;top:33px;left:5px;position:absolute;background:url(../images/pocker.png) center;background-position:-623px -777px;}
+
+/*牌顶 红色字体*/
+.porker-item .porker-top .red-2{background:url(../images/pocker.png) center;background-position:-602px -716px;}
+.porker-item .porker-top .red-3{background:url(../images/pocker.png) center;background-position:-602px -687px;}
+.porker-item .porker-top .red-4{background:url(../images/pocker.png) center;background-position:-698px -658px;}
+.porker-item .porker-top .red-5{background:url(../images/pocker.png) center;background-position:-667px -658px;}
+.porker-item .porker-top .red-6{background:url(../images/pocker.png) center;background-position:-640px -658px;}
+.porker-item .porker-top .red-7{background:url(../images/pocker.png) center;background-position:-610px -658px;}
+.porker-item .porker-top .red-8{background:url(../images/pocker.png) center;background-position:-574px -771px;}
+.porker-item .porker-top .red-9{background:url(../images/pocker.png) center;background-position:-574px -742px;}
+.porker-item .porker-top .red-10{background:url(../images/pocker.png) center;background-position:-631px -687px;}
+.porker-item .porker-top .red-j{background:url(../images/pocker.png) center;background-position:-574px -683px;}
+.porker-item .porker-top .red-q{background:url(../images/pocker.png) center;background-position:-547px -770px;}
+.porker-item .porker-top .red-k{background:url(../images/pocker.png) center;background-position:-584px -652px;}
+.porker-item .porker-top .red-a{background:url(../images/pocker.png) center;background-position:-574px -711px;}
+/*牌底 黑色字体*/
+.porker-item .porker-top .black-2{background:url(../images/pocker.png) center;background-position:-716px -716px;}
+.porker-item .porker-top .black-3{background:url(../images/pocker.png) center;background-position:-716px -687px;}
+.porker-item .porker-top .black-4{background:url(../images/pocker.png) center;background-position:-725px -658px;}
+.porker-item .porker-top .black-5{background:url(../images/pocker.png) center;background-position:-687px -747px;}
+.porker-item .porker-top .black-6{background:url(../images/pocker.png) center;background-position:-687px -716px;}
+.porker-item .porker-top .black-7{background:url(../images/pocker.png) center;background-position:-658px -747px;}
+.porker-item .porker-top .black-8{background:url(../images/pocker.png) center;background-position:-687px -687px;}
+.porker-item .porker-top .black-9{background:url(../images/pocker.png) center;background-position:-658px -717px;}
+.porker-item .porker-top .black-10{background:url(../images/pocker.png) center;background-position:-716px -747px;}
+.porker-item .porker-top .black-j{background:url(../images/pocker.png) center;background-position:-658px -687px;}
+.porker-item .porker-top .black-q{background:url(../images/pocker.png) center;background-position:-602px -747px;}
+.porker-item .porker-top .black-k{background:url(../images/pocker.png) center;background-position:-631px -716px;}
+.porker-item .porker-top .black-a{background:url(../images/pocker.png) center;background-position:-631px -745px;}
+
+.porker-item .porker-center{width:100px;height:50px;position:absolute;top:50px;}
+.porker-item .porker-center .color-heitao{width:23px;height:23px;background-color:#F00;margin:13.5px auto;background:url(../images/pocker.png) center;background-position:-553px -652px;}
+.porker-item .porker-center .color-hongtao{width:23px;height:23px;background-color:#F00;margin:13.5px auto;background:url(../images/pocker.png) center;background-position:-517px -769px;}
+.porker-item .porker-center .color-fangkuai{width:23px;height:23px;background-color:#F00;margin:13.5px auto;background:url(../images/pocker.png) center;background-position:-685px -628px;}
+.porker-item .porker-center .color-caohua{width:23px;height:23px;background-color:#F00;margin:13.5px auto;background:url(../images/pocker.png) center;background-position:-712px -628px;}
+.porker-item .porker-bottom{width:100px;height:50px;position:absolute;top:100px;}
+.porker-item .porker-bottom .point{width:20px;height:22px;background-color:#F00;bottom:8px;right:1px;position:absolute;
+transform: rotate(180deg);
+-ms-transform: rotate(180deg);		/* IE 9 */
+-webkit-transform: rotate(180deg);	/* Safari and Chrome */
+-o-transform: rotate(180deg);		/* Opera */
+-moz-transform: rotate(180deg);		/* Firefox */}
+.porker-item .porker-bottom .color-heitao{width:15px;height:15px;background-color:#F00;top:5px;right:3px;position:absolute;background:url(../images/pocker.png) center;background-position:-667px -777px;
+transform: rotate(180deg);
+-ms-transform: rotate(180deg);		/* IE 9 */
+-webkit-transform: rotate(180deg);	/* Safari and Chrome */
+-o-transform: rotate(180deg);		/* Opera */
+-moz-transform: rotate(180deg);		/* Firefox */
+}
+.porker-item .porker-bottom .color-hongtao{width:15px;height:15px;background-color:#F00;top:5px;right:3px;position:absolute;background:url(../images/pocker.png) center;background-position:-645px -777px;
+transform: rotate(180deg);
+-ms-transform: rotate(180deg);		/* IE 9 */
+-webkit-transform: rotate(180deg);	/* Safari and Chrome */
+-o-transform: rotate(180deg);		/* Opera */
+-moz-transform: rotate(180deg);		/* Firefox */
+}
+.porker-item .porker-bottom .color-fangkuai{width:15px;height:15px;background-color:#F00;top:5px;right:3px;position:absolute;background:url(../images/pocker.png) center;background-position:-602px -777px;
+transform: rotate(180deg);
+-ms-transform: rotate(180deg);		/* IE 9 */
+-webkit-transform: rotate(180deg);	/* Safari and Chrome */
+-o-transform: rotate(180deg);		/* Opera */
+-moz-transform: rotate(180deg);		/* Firefox */
+}
+.porker-item .porker-bottom .color-caohua{width:15px;height:15px;background-color:#F00;top:5px;right:3px;position:absolute;background:url(../images/pocker.png) center;background-position:-623px -777px;
+transform: rotate(180deg);
+-ms-transform: rotate(180deg);		/* IE 9 */
+-webkit-transform: rotate(180deg);	/* Safari and Chrome */
+-o-transform: rotate(180deg);		/* Opera */
+-moz-transform: rotate(180deg);		/* Firefox */
+}
+
+/*牌底 红色数字*/
+.porker-item .porker-bottom .red-2{background:url(../images/pocker.png) center;background-position:-602px -716px;}
+.porker-item .porker-bottom .red-3{background:url(../images/pocker.png) center;background-position:-602px -687px;}
+.porker-item .porker-bottom .red-4{background:url(../images/pocker.png) center;background-position:-698px -658px;}
+.porker-item .porker-bottom .red-5{background:url(../images/pocker.png) center;background-position:-667px -658px;}
+.porker-item .porker-bottom .red-6{background:url(../images/pocker.png) center;background-position:-640px -658px;}
+.porker-item .porker-bottom .red-7{background:url(../images/pocker.png) center;background-position:-610px -658px;}
+.porker-item .porker-bottom .red-8{background:url(../images/pocker.png) center;background-position:-574px -771px;}
+.porker-item .porker-bottom .red-9{background:url(../images/pocker.png) center;background-position:-574px -741px;}
+.porker-item .porker-bottom .red-10{background:url(../images/pocker.png) center;background-position:-631px -687px;}
+.porker-item .porker-bottom .red-j{background:url(../images/pocker.png) center;background-position:-574px -683px;}
+.porker-item .porker-bottom .red-q{background:url(../images/pocker.png) center;background-position:-547px -770px;}
+.porker-item .porker-bottom .red-k{background:url(../images/pocker.png) center;background-position:-584px -653px;}
+.porker-item .porker-bottom .red-a{background:url(../images/pocker.png) center;background-position:-574px -711px;}
+/*牌底 黑色数字*/
+.porker-item .porker-bottom .black-2{background:url(../images/pocker.png) center;background-position:-716px -716px;}
+.porker-item .porker-bottom .black-3{background:url(../images/pocker.png) center;background-position:-716px -687px;}
+.porker-item .porker-bottom .black-4{background:url(../images/pocker.png) center;background-position:-725px -658px;}
+.porker-item .porker-bottom .black-5{background:url(../images/pocker.png) center;background-position:-687px -747px;}
+.porker-item .porker-bottom .black-6{background:url(../images/pocker.png) center;background-position:-687px -716px;}
+.porker-item .porker-bottom .black-7{background:url(../images/pocker.png) center;background-position:-658px -747px;}
+.porker-item .porker-bottom .black-8{background:url(../images/pocker.png) center;background-position:-687px -687px;}
+.porker-item .porker-bottom .black-9{background:url(../images/pocker.png) center;background-position:-658px -716px;}
+.porker-item .porker-bottom .black-10{background:url(../images/pocker.png) center;background-position:-716px -747px;}
+.porker-item .porker-bottom .black-j{background:url(../images/pocker.png) center;background-position:-658px -687px;}
+.porker-item .porker-bottom .black-q{background:url(../images/pocker.png) center;background-position:-605px -747px;}
+.porker-item .porker-bottom .black-k{background:url(../images/pocker.png) center;background-position:-631px -716px;}
+.porker-item .porker-bottom .black-a{background:url(../images/pocker.png) center;background-position:-631px -747px;}
+
+/*右侧操作面板 */
+.game-board .oper-board{width:180px;height:150px;position:absolute;right:0px;top:30px;right:20px;display:none;}
+.game-board .oper-board .show-A{display:none;width:180px;height:150px;position:absolute;right:0px;top:0px;right:0px;text-align:center;}
+.game-board .oper-board .show-A .showBtn{width:120px;height:39.7px;margin:20px auto;background:url(../images/showA.png); background-size:contain;cursor:pointer;}
+.game-board .oper-board .show-A .unshowBtn{width:120px;height:39.7px;margin:20px auto;background:url(../images/unshowA.png); background-size:contain;cursor:pointer;}
+.game-board .oper-board .action{display:none;width:180px;height:150px;position:absolute;right:0px;top:0px;right:0px;text-align:center;}
+.game-board .oper-board .chupaiBtn{display:none;width:120px;height:39.7px;margin:20px auto;background:url(../images/chupai.png); background-size:contain;cursor:pointer;}
+.game-board .oper-board .buchuBtn{display:none;width:120px;height:39.7px;margin:20px auto;background:url(../images/buchu.png); background-size:contain;cursor:pointer;}
+
+/*已出牌 牌堆面板*/
+.num-1 .out-board{width:400px;height:80px;left:270px;top:-60px;position:absolute;text-align:center;}
+.num-1 .out-board .out-item{width:40px;height:70px;margin-left:-21px;border:1px solid #eee;background-color:#FFF;border-radius:5px;display:inline-block;position:relative;}
+.num-1 .out-board .out-top{width: 15px;height: 18px;float: left;margin-left: 5px;margin-top: 10px;background: url('../images/smallpocker.png');}
+.num-1 .out-board .out-bottom{width: 15px;height: 18px;right: 12px;bottom: 20px;position: absolute;background: url('../images/smallpocker.png');}
+.out-board .black-2{background-position:-150px -60px !important;}
+.out-board .black-3{background-position:-150px -35px  !important;}
+.out-board .black-4{background-position:-158px -9px  !important;}
+.out-board .black-5{background-position:-127px -85px  !important;}
+.out-board .black-6{background-position:-127px -60px  !important;}
+.out-board .black-7{background-position:-103px -85px  !important;}
+.out-board .black-8{background-position:-127px -35px  !important;}
+.out-board .black-9{background-position:-103px -60px  !important;}
+.out-board .black-10{background-position:-150px -85px  !important;}
+.out-board .black-j{background-position:-103px -35px  !important;}
+.out-board .black-q{background-position:-53px -85px  !important;}
+.out-board .black-k{background-position:-77px -60px  !important;}
+.out-board .black-a{background-position:-77px -85px  !important;}
+.out-board .red-2{background-position:-53px -60px  !important;}
+.out-board .red-3{background-position:-53px -35px  !important;}
+.out-board .red-4{background-position:-135px -9px  !important;}
+.out-board .red-5{background-position:-110px -9px  !important;}
+.out-board .red-6{background-position:-87px -9px  !important;}
+.out-board .red-7{background-position:-59px -9px  !important;}
+.out-board .red-8{background-position:-31px -107px  !important;}
+.out-board .red-9{background-position:-31px -82px  !important;}
+.out-board .red-10{background-position:-79px -36px  !important;}
+.out-board .red-j{background-position:-31px -31px  !important;}
+.out-board .red-q{background-position:-6px -106px  !important;}
+.out-board .red-k{background-position:-37px -6px  !important;}
+.out-board .red-a{background-position:-31px -56px  !important;}
+.out-board .color-hongtao{background-position:-89px -110px  !important;}
+.out-board .color-heitao{background-position:-108px -110px  !important;}
+.out-board .color-caohua{background-position:-69px -110px !important;}
+.out-board .color-fangkuai{background-position:-51px -110px !important;}
+.num-2 .out-board{width:400px;height:80px;left:100px;top:100px;position:absolute;text-align:center;}
+.num-2 .out-board .out-item{width:40px;height:70px;margin-left:-21px;border:1px solid #eee;background-color:#FFF;border-radius:5px;display:inline-block;position:relative;}
+.num-2 .out-board .out-top{width: 15px;height: 18px;float: left;margin-left: 5px;margin-top: 10px;background: url('../images/smallpocker.png');}
+.num-2 .out-board .out-bottom{width: 15px;height: 18px;right: 12px;bottom: 20px;position: absolute;background: url('../images/smallpocker.png');}
+.num-3 .out-board{width:400px;height:80px;right:100px;top:100px;position:absolute;text-align:right;}
+.num-3 .out-board .out-item{width:40px;height:70px;margin-left:-21px;border:1px solid #eee;background-color:#FFF;border-radius:5px;display:inline-block;position:relative;}
+.num-3 .out-board .out-top{width: 15px;height: 18px;float: left;margin-left: 5px;margin-top: 10px;background: url('../images/smallpocker.png');}
+.num-3 .out-board .out-bottom{width: 15px;height: 18px;right: 12px;bottom: 20px;position: absolute;background: url('../images/smallpocker.png');}
+.num-4 .out-board{width:400px;height:80px;top: 100px;left: 120px;position:absolute;text-align:left;}
+.num-4 .out-board .out-item{width:40px;height:70px;margin-left:-21px;border:1px solid #eee;background-color:#FFF;border-radius:5px;display:inline-block;position:relative;}
+.num-4 .out-board .out-top{width: 15px;height: 18px;float: left;margin-left: 5px;margin-top: 10px;background: url('../images/smallpocker.png');}
+.num-4 .out-board .out-bottom{width: 15px;height: 18px;right: 12px;bottom: 20px;position: absolute;background: url('../images/smallpocker.png');}
+.buchu-item{width:90px !important;height:42px !important;border:none !important;background:url(../images/buchu-state.png) center no-repeat !important;background-size:contain !important;}
+
+
+/*出牌状态面板*/
+.porker-state{display:none;width:365px;height:40px;top:-15px;left:275px;position:absolute;background-repeat:no-repeat;background-position:center;background-size:contain;}
+
+/*游戏结果*/
+.game-result{display:none;width: 910px;height: 600px;position: absolute;top: 0px;left: 0px;z-index: 100;font-size: 24px;line-height:40px;background-size:contain;background-position:center;}
+.win{background:url(../images/bg-win.png) center no-repeat;}
+.equal{background:url(../images/bg-equal.png) center no-repeat;}
+.lose{background:url(../images/bg-lose.png) center no-repeat;}
+.game-result .word{width:320px;height:150px;position:absolute;left:325px;top:200px;}
+.game-result .continue{width: 200px;height: 50px;top: 400px;position: absolute;left: 350px;background:url(../images/continue.png) center no-repeat;background-size:contain;}
+
+/*游戏聊天面板*/
+.game-chat{width:180px;height:213px;background-image:url(../images/chat-board.png);background-size:contain;background-repeat:no-repeat;position: absolute;top:-5px;left: -190px;}
+.game-chat textarea{width: 160px;height: 140px;margin: 10px;resize: none;background: none;border: none;}
+.game-chat input[type=text]{width: 110px;margin: 10px;margin-top: 0px;}
+.game-chat .forvoice{color: #FFF;font-size: 10px;margin-top:-5px;text-indent:10px;}
+.game-chat .forvoice i{display:inline-block;height:16px;width:16px;margin-bottom:-7px;background-image:url(../images/iconfont-laba.png);background-size:10px;background-repeat:no-repeat;}
+.game-chat .forvoice a{margin-left:10px;margin-right:10px;}
+.game-chat .forvoice a:hover{text-decoration:underline;cursor:pointer;}
