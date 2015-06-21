@@ -1,0 +1,11 @@
+doctype html
+html
+	head
+		meta(http-equiv='Content-type',content='text/html',charset='utf-8')
+		title= title
+		block style_b
+
+	body#gameBody(onLoad="initScreen();",onResize="initScreen();")
+		block content
+
+		block script_b

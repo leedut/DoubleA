@@ -1,0 +1,119 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+var app = require('../app');
+var debug = require('debug')('DooubleA:server');
+var http = require('http');
+var serverIP = require('ipv4');
+var fs =require('fs');
+
+/*
+* 检查本机网络情况
+* 将IP自动写入前端JS文件
+*/
+if( serverIP.ipv4 ==undefined ){
+  console.error('本机未联网，无法启动服务器；请检查本机网络环境后重试');
+  return false;
+}
+else{
+  console.log('本机IP：'+serverIP.ipv4+'，游戏端口：3000。');
+  fs.writeFile("public/javascripts/ip_config.js","window.server_ip='"+serverIP.ipv4+":9000';",function(err){
+      if(!err){
+        console.log('ip_config.js文件创建完成');
+      }
+      else{
+        console.error('ip_config.js文件创建失败，无法启动');
+        return false;
+      }
+  })
+}
+
+/*
+* 开启9000端口
+* socket通信接口
+*/
+var fs = require('socket_server');
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+var port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+
+var server = http.createServer(app);
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  var bind = typeof port === 'string'
+    ? 'Pipe ' + port
+    : 'Port ' + port;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening() {
+  var addr = server.address();
+  var bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port;
+  debug('Listening on ' + bind);
+}

@@ -1,0 +1,84 @@
+extends layout
+
+block script_b
+	script(src="/javascripts/jquery.min.js",type="text/javascript",charset="utf-8")
+	script(src="/javascripts/loader.js",type="text/javascript",charset="utf-8")
+	script(src="/javascripts/game.js",type="text/javascript",charset="utf-8")
+	script(src="/javascripts/pocker.js",type="text/javascript",charset="utf-8")
+	script(src="/javascripts/divControl.js",type="text/javascript",charset="utf-8")
+	script(src="/javascripts/socket.io.js",type="text/javascript",charset="utf-8")
+	script(src="/javascripts/ip_config.js",type="text/javascript",charset="utf-8")
+	script(src="/javascripts/mySocket.js",type="text/javascript",charset="utf-8")
+
+block style_b
+	link(rel='stylesheet', href='/stylesheets/style.css')
+
+block content
+	.game-container
+		//- 背景画布
+		canvas.game-layer#gameCanvas(width="910",height="600")
+		//- 开始屏幕
+		.start-screen.for-center
+			.start-btn#enterBtn(title="点击进入游戏")
+		//- 玩家初始化区域
+		div.input-name
+				input#userName(type="text",name="name",placeholder="请输入昵称！")
+				div.confirm-btn(title="确定输入昵称",onClick="javascript:getName();")
+		div.tab-bar
+			div.player-control-container
+				img.player-control#playerIcon(src="images/iconfont-shengyin1.png",onClick="javascript:playControl();")
+		//- 游戏音控面板
+		div.game-layer.game-chat
+			textarea
+			p
+				input#textChat(type="text")
+				button(onClick="javascript:sendChat()") 发送
+				p.forvoice
+					i.voice-icon
+					a(onClick="javascript:voiceChat(1);") 催人
+					a(onClick="javascript:voiceChat(2);") 吐槽
+					a(onClick="javascript:voiceChat(3);") 骂人
+		//- 游戏主控面板
+		div.game-layer.game-board
+			div.num-1
+				div.ready-btn#readyBtn(onClick="gameReady();")
+				div.ready-state
+				//-扑克牌容器
+				div.porker-board#pocker-board
+				//-操作面板
+				div.oper-board
+					div.show-A
+						div.showBtn(onClick="showA(1);")
+						div.unshowBtn(onClick="showA(0);")
+					div.action
+						div.chupaiBtn(onClick="javascript:sendPock();")
+						div.buchuBtn(onClick="javascript:sendEmptyPock();")
+				//- 出牌状态容器
+				div.chupai-state
+				//-已出牌面板
+				div.out-board
+				//-牌型判别容器
+				div.porker-state#pocker-state
+			//- 其余三位选手状态板
+			mixin stateBoardfor3()
+				div(class!=attributes.class)
+					div.ready-state
+					div.porkerbg-item-1
+					div.porkerbg-item-2
+						div.left 剩余 
+							span#leftCount 13 
+							| 张
+					//-出牌状态容器
+					div.chupai-state
+					//-已出牌面板
+					div.out-board
+			+stateBoardfor3(class="num-2")
+			+stateBoardfor3(class="num-3")
+			+stateBoardfor3(class="num-4")
+		div.game-result
+			div.word
+			div.continue(onClick="continueGame();")
+		//- 音效资源面板
+		audio.audio-player#bgPlayer(src="/sounds/normal/MusicEx_Welcome.ogg",autoplay="true",loop)
+		audio.audio-player#musicPlayer(src="/sounds/mouse/Special_menu.ogg")
+		img#imgLoader(src="/images/bg-1.png")
