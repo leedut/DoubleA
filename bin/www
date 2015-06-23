@@ -12,11 +12,12 @@ var fs =require('fs');
 
 /*
 * 检查本机网络情况
+* 网络情况不良则无法启动服务器
 * 将IP自动写入前端JS文件
 */
 if( serverIP.ipv4 ==undefined ){
   console.error('本机未联网，无法启动服务器；请检查本机网络环境后重试');
-  return false;
+  process.exit(0);
 }
 else{
   console.log('本机IP：'+serverIP.ipv4+'，游戏端口：3000。');
